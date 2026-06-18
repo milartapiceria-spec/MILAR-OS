@@ -1,9 +1,9 @@
 {
-  "name": "Milar OS",
-  "short_name": "Milar OS",
+  "name": "JARVIS Milar OS",
+  "short_name": "JARVIS",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#111418",
-  "theme_color": "#111418",
+  "background_color": "#05070A",
+  "theme_color": "#05070A",
   "icons": []
 }

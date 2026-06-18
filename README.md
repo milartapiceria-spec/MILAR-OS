@@ -1,10 +1,11 @@
-# MILAR OS · Director Dashboard
+# JARVIS · Milar OS
 
-v2 UI PRO
+v3 Jarvis Mode
 
-- Nueva imagen profesional
-- PIN oculto en pantalla inicial
-- Centro Dirección para Fran
-- Reuniones con dictado, resumen y tareas
+- Nuevo nombre JARVIS
+- Modo TV 55 con salvapantallas/ambiente
+- Panel oscuro tipo asistente
+- Voz de prueba
+- Centro Dirección Fran
+- Reuniones con dictado
 - Calculadora Pedro Ortiz
-- Radar inicial
