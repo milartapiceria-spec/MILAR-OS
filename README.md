@@ -1,7 +1,5 @@
-# MILAR OS
+# MILAR OS v1.1
 
-Proyecto listo para GitHub + Vercel.
+Captura rápida, Reuniones Fran, calculadora Pedro Ortiz y Radar inicial.
 
 PIN inicial: 1209
-
-Conectado a Supabase.
