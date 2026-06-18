@@ -1,5 +1,10 @@
-# MILAR OS v1.1
+# MILAR OS · Director Dashboard
 
-Captura rápida, Reuniones Fran, calculadora Pedro Ortiz y Radar inicial.
+v2 UI PRO
 
-PIN inicial: 1209
+- Nueva imagen profesional
+- PIN oculto en pantalla inicial
+- Centro Dirección para Fran
+- Reuniones con dictado, resumen y tareas
+- Calculadora Pedro Ortiz
+- Radar inicial

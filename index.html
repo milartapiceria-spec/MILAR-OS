@@ -1,10 +1,80 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Milar OS v1.1</title><meta name="theme-color" content="#8DC63F"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/styles.css"></head><body>
-<div id="lockScreen" class="lock"><div class="lock-card"><div class="m-logo big">M</div><h1>Milar OS</h1><p>Acceso exclusivo Daniel</p><input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" maxlength="6"><button class="primary" onclick="unlock()">Entrar</button><small>PIN inicial: 1209</small></div></div>
-<div id="mainApp" class="app hidden">
-<header class="top"><div class="brand"><div class="m-logo">M</div><div><h1>Milar OS</h1><p>v1.1 · Centro operativo comercial</p></div></div><div class="top-actions"><div id="cloudStatus" class="status-pill">☁️ Conectando...</div><button onclick="lock()">🔒</button></div></header>
-<section class="hero"><h2>Buenas tardes, Daniel</h2><p id="dailySummary">Sincronizando...</p><input id="globalSearch" placeholder="Buscar cliente, operación, reunión, tarifa..." oninput="searchGlobal(this.value)"><div id="searchResults" class="search-results hidden"></div><div class="actions"><button class="primary big-action" onclick="openQuickCapture()">🎤 Captura rápida</button><button onclick="prepareMeeting()">🧾 Preparar Fran</button><button onclick="openMeetingRecorder()">🎙️ Grabar reunión</button><button onclick="openTariffCalc()">🛋️ Tarifa Pedro Ortiz</button><button onclick="openNewOperation()">➕ Operación</button><button onclick="loadAll()">🔄 Sincronizar</button></div></section>
-<main class="layout"><aside class="side-panel"><button onclick="scrollToTop()">🏠 Inicio</button><button onclick="openQuickCapture()">🎤 Captura rápida</button><button onclick="prepareMeeting()">🧾 Preparar Fran</button><button onclick="openMeetingRecorder()">🎙️ Reuniones</button><button onclick="openTariffCalc()">🛋️ Tarifas</button><button onclick="openNewOperation()">➕ Operación</button><button onclick="openPeople()">👥 Personas</button><button onclick="openRadar()">📡 Radar</button><button onclick="openClosed()">✅ Cerrados</button><button onclick="openSettings()">⚙️ Ajustes</button></aside>
-<section class="content-grid"><section class="card priority-card wide"><div class="card-head"><h3>🔥 Prioridades del día</h3><span id="priorityCount"></span></div><div id="priorityList" class="list"></div></section><section class="card"><h3>🧾 Fran / Dirección</h3><button class="small-primary" onclick="prepareMeeting()">Preparar reunión</button><button class="small-primary secondary" onclick="openMeetingRecorder()">Grabar reunión</button><div id="meetingsList" class="list compact"></div></section><section class="card wide"><div class="card-head"><h3>🔴 Operaciones activas</h3><span id="activeCount"></span></div><div id="operationsList" class="list"></div></section><section class="card"><h3>📡 Radar automático</h3><div id="radarAuto" class="list compact"></div></section><section class="card"><h3>🛋️ Tarifa Pedro Ortiz</h3><p class="muted">Punto: 1,79 · Dto 6% + 2% PP · Margen 56% · IVA 21%</p><button class="small-primary" onclick="openTariffCalc()">Calcular precio</button></section><section class="card"><h3>👥 Personas</h3><button class="small-primary" onclick="openNewPerson()">Nueva persona</button><div id="peopleList" class="list compact"></div></section><section class="card wide"><h3>✅ Cerrado / Histórico</h3><div id="closedList" class="list"></div></section></section></main>
-<nav class="bottom"><button onclick="scrollToTop()">🏠<span>Inicio</span></button><button onclick="openQuickCapture()">🎤<span>Captura</span></button><button class="voice" onclick="openMeetingRecorder()">🎙️</button><button onclick="openTariffCalc()">🛋️<span>Tarifas</span></button><button onclick="prepareMeeting()">🧾<span>Fran</span></button></nav></div>
-<div id="modal" class="modal hidden"><div class="modal-card"><h3 id="modalTitle">Milar OS</h3><div id="modalText"></div><div id="modalActions" class="modal-actions"></div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>window.MILAR_SUPABASE_URL="https://zmkwxjathabytohtutxg.supabase.co";window.MILAR_SUPABASE_KEY="sb_publishable_Npa_ZU6BglwiW7ipMVB5TQ_VC-2y2xu";</script><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Milar OS · Director Dashboard</title>
+<meta name="theme-color" content="#111418"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="lockScreen" class="lock">
+  <div class="lock-card">
+    <div class="brand-mark">M</div>
+    <h1>Milar OS</h1>
+    <p>Director Dashboard</p>
+    <input id="pinInput" type="password" inputmode="numeric" placeholder="Código de acceso" maxlength="6" autocomplete="off">
+    <button class="primary" onclick="unlock()">Acceder</button>
+  </div>
+</div>
+
+<div id="mainApp" class="shell hidden">
+  <aside class="sidebar">
+    <div class="side-brand"><div class="brand-mark small">M</div><div><b>Milar OS</b><span>Director Dashboard</span></div></div>
+    <button onclick="goTop()" class="nav active">Inicio</button>
+    <button onclick="openQuickCapture()" class="nav">Captura rápida</button>
+    <button onclick="prepareMeeting()" class="nav">Centro Dirección</button>
+    <button onclick="openMeetingRecorder()" class="nav">Reuniones</button>
+    <button onclick="openTariffCalc()" class="nav">Tarifas</button>
+    <button onclick="openNewOperation()" class="nav">Operaciones</button>
+    <button onclick="openPeople()" class="nav">Clientes</button>
+    <button onclick="openRadar()" class="nav">Radar</button>
+    <button onclick="openSettings()" class="nav">Ajustes</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h1>Buenas tardes, Daniel</h1><p id="dailySummary">Sincronizando el centro operativo...</p></div>
+      <div class="top-actions"><span id="cloudStatus" class="pill">Cloud</span><button onclick="loadAll()">Actualizar</button><button onclick="lock()">Bloquear</button></div>
+    </header>
+
+    <section class="command">
+      <input id="globalSearch" placeholder="Buscar en operaciones, clientes, reuniones o tarifas..." oninput="searchGlobal(this.value)">
+      <button class="primary" onclick="openQuickCapture()">Nueva captura</button>
+      <div id="searchResults" class="search-results hidden"></div>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi"><span>Operaciones</span><b id="kpiOps">0</b></div>
+      <div class="kpi"><span>Alta prioridad</span><b id="kpiHigh">0</b></div>
+      <div class="kpi"><span>Reuniones</span><b id="kpiMeet">0</b></div>
+      <div class="kpi"><span>Clientes</span><b id="kpiPeople">0</b></div>
+    </section>
+
+    <section class="quick-grid">
+      <button onclick="prepareMeeting()"><b>Centro Dirección</b><span>Preparar temas para Fran</span></button>
+      <button onclick="openMeetingRecorder()"><b>Grabar reunión</b><span>Transcripción, resumen y tareas</span></button>
+      <button onclick="openTariffCalc()"><b>Pedro Ortiz</b><span>Calcular PVP por puntos</span></button>
+      <button onclick="openQuickCapture()"><b>Captura rápida</b><span>Dictar una tarea o idea</span></button>
+    </section>
+
+    <section class="grid">
+      <article class="panel wide"><div class="panel-head"><h2>Prioridades de hoy</h2><span id="priorityCount"></span></div><div id="priorityList" class="list"></div></article>
+      <article class="panel"><h2>Centro Dirección</h2><div id="directionList" class="list compact"></div><button class="link-btn" onclick="prepareMeeting()">Preparar reunión</button></article>
+      <article class="panel wide"><div class="panel-head"><h2>Operaciones activas</h2><span id="activeCount"></span></div><div id="operationsList" class="list"></div></article>
+      <article class="panel"><h2>Radar automático</h2><div id="radarAuto" class="list compact"></div></article>
+      <article class="panel"><h2>Tarifas comerciales</h2><p class="muted">Pedro Ortiz 2025: punto 1,79 · dto 6% + 2% · margen 56% · IVA 21%</p><button class="link-btn" onclick="openTariffCalc()">Abrir calculadora</button></article>
+      <article class="panel"><h2>Clientes / personas</h2><div id="peopleList" class="list compact"></div><button class="link-btn" onclick="openNewPerson()">Añadir persona</button></article>
+    </section>
+  </main>
+
+  <nav class="mobile-nav">
+    <button onclick="goTop()">Inicio</button><button onclick="openNewOperation()">Operar</button><button class="center" onclick="openQuickCapture()">+</button><button onclick="openTariffCalc()">Tarifas</button><button onclick="prepareMeeting()">Fran</button>
+  </nav>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modal-card"><div class="modal-head"><h3 id="modalTitle">Milar OS</h3><button onclick="closeModal()">Cerrar</button></div><div id="modalText"></div><div id="modalActions" class="modal-actions"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>window.MILAR_SUPABASE_URL="https://zmkwxjathabytohtutxg.supabase.co";window.MILAR_SUPABASE_KEY="sb_publishable_Npa_ZU6BglwiW7ipMVB5TQ_VC-2y2xu";</script>
+<script src="/app.js"></script>
+</body>
+</html>
